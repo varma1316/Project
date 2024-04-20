@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+      .gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-image {
+    margin-bottom: 20px;
+}
+
+.thumbnail {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="main-image">
+            <img id="./public/images/i8.jpg" src="" alt="Main Image">
+        </div>
+        <div class="thumbnails">
+            <img src="./public/images/i1.jpg" alt="Thumbnail 1" class="thumbnail">
+            <img src="./public/images/i2.jpg" alt="Thumbnail 2" class="thumbnail">
+            <img src="./public/images/i3.jpg" alt="Thumbnail 3" class="thumbnail">
+            <!-- Add more thumbnails here -->
+        </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+    const thumbnails = document.querySelectorAll(".thumbnail");
+    const mainImg = document.getElementById("mainImg");
+
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener("click", function() {
+            // Change the src attribute of the main image to the clicked thumbnail's src
+            mainImg.src = this.src;
+        });
+    });
+});
+
+    </script>
+</body>
+</html>

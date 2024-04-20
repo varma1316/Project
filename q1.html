@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Support</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .main {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        h1, h2 {
+            padding: 10px 0;
+            color: orange;
+            text-align: center;
+        }
+
+        p {
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form input[type="submit"] {
+            background-color: orange;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Tourist Support</h1>
+    </div>
+    
+    <div class="nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="section">
+            <h2>Start a Chat</h2>
+            <form action="/form1" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <br>
+                <input type="submit" name="submit" value="Start The Chat">
+            </form>
+        </div>
+        
+        <div class="section">
+            <h2>Welcome to our Customer Support</h2>
+            <p>If you have any questions or issues, please feel free to contact us.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Frequently Asked Questions</h2>
+            <ul>
+                <li><a href="#">How do I create an account?</a></li>
+                <li><a href="#">What payment methods do you accept?</a></li>
+                <li><a href="#">How can I track my order?</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Customer Support. All rights reserved.</p>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var chatForm = document.getElementById('chatForm');
+        var chatMessages = document.getElementById('chatMessages');
+
+        chatForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var nameInput = document.getElementById('name');
+            var messageInput = document.getElementById('message');
+            var name = nameInput.value.trim();
+            var message = messageInput.value.trim();
+
+            if (name !== '' && message !== '') {
+                socket.emit('chatMessage', { name: name, message: message });
+                messageInput.value = '';
+            } else {
+                alert('Please enter your name and message.');
+            }
+        });
+
+        socket.on('chatMessage', function(data) {
+            var message = document.createElement('div');
+            message.innerHTML = '<strong>' + data.name + ':</strong> ' + data.message;
+            chatMessages.appendChild(message);
+        });
+    </script>
+</body>
+</html>

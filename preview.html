@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="styling.css">
+<style>
+  
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* #background-video {
+height: 100vh;
+width: 100vw;
+object-fit: cover;
+position: fixed;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+z-index: -1;
+} */
+:root{
+    --orange: #ffa500;
+}
+*{
+    font-family: 'Nunito', sans-serif;
+    /* font-family: trebuchet MS; */
+    margin: 0; padding:0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+*::selection{
+    background:var(--orange) ;
+    color: #fff;
+}
+
+html{
+font-size: 62.5%;
+overflow-x: hidden;
+scroll-padding-top: 6rem;
+scroll-behavior: smooth;
+}
+
+section{
+    padding: 2rem 9%;
+}
+
+.heading{
+    text-align: center;
+    padding: 2.5rem 0;
+}
+
+.heading span{
+    font-size: 3.5rem;
+    background: rgba(255,165,0,.2);
+    color: var(--orange);
+    border-radius: .5rem;
+    padding: .2rem 1rem;
+    /* display: inline-block; */
+}
+
+.heading span .space{
+    background: none;
+}
+.form-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--orange);
+    color: #fff;
+    padding: .8rem 3rem;
+    border: .2rem solid var(--orange);
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover{
+    background: rgba(255,165,0,.2);
+    color:var(--orange);
+}
+
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #fff;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+}
+
+header .logo{
+    font-size: 3rem;
+    font-weight: bolder;
+    /* color:#fff; */
+    color: orange;
+    text-transform: uppercase;
+}
+
+header .logo span{
+    color:var(--orange);
+}
+
+header .navbar a{
+    /* color: #fff; */
+    color: orange;
+    font-size: 2rem;
+    margin: 0 .8rem;
+}
+
+header .navbar a:hover{
+    color:var(--orange);
+}
+
+header .icons i{
+    font-size: 2.5rem;
+    /* color: #fff; */
+    color: orange;
+    cursor: pointer;
+    margin-right: 2rem;
+}
+
+header .icons i:hover{
+    color:var(--orange);
+}
+
+header .search-bar-container{
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    padding: 1.5rem 2rem;
+    background: #333;
+    border-top: .1rem solid rgba(255,255,255,.2);
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+
+header .search-bar-container.active{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+header .search-bar-container #search-bar{
+    width: 100%;
+    padding: 1rem;
+    text-transform: none;
+    color: #333;
+    font-size: 1.7rem;
+    border-radius: 5rem;
+}
+
+header .search-bar-container label{
+    /* color: #fff; */
+    color: orange;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+}
+
+header .search-bar-container label:hover{
+    color: var(--orange);
+}
+
+
+.login-form-container{
+    position: fixed;
+    top: -120%; left: 0;
+    z-index: 10000;
+    min-height: 100vh;
+    width: 100%;
+    /* background: rgba(0,0,0, .7); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-container.active{
+    top:0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.login-form-container form{
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    width: 50rem;
+}
+
+.login-form-container form h3{
+    font-size: 3rem;
+    color: #444;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.login-form-container form .box{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.7rem;
+    color:#333;
+    margin: .6rem 0;
+    border: .1rem solid rgba(0,0,0, .3);
+    text-transform: none;
+}
+
+.login-form-container form .box:focus{
+    border-color: var(--orange);;
+}
+
+.login-form-container form #remember{
+    margin:2rem 0;
+}
+.login-form-container form label{
+    font-size: 1.5rem;
+}
+
+.login-form-container form .btn{
+    display: block;
+    width: 100%;
+}
+
+.login-form-container form p{
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.login-form-container form p a{
+    color: var(--orange);
+}
+
+.login-form-container form p a:hover{
+    color: #333;
+    text-decoration: underline;
+}
+
+.login-form-container #form-close{
+    position: absolute;
+    top: 2rem; right:3rem;
+    font-size: 5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+#menu-bar{
+    color:#fff;
+    border: .1rem solid #fff;
+    border-radius: .5rem;
+    font-size: 3rem;
+    padding: .5rem 1.2rem;
+    cursor:pointer;
+    /* display: none; */
+}
+
+.home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    position:relative;
+    z-index: 0;
+}
+
+.home .content{
+    text-align: center;
+}
+
+.home .content h3{
+    font-size: 4.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 .3rem .5rem rgba(0,0,0, .1);
+}
+
+.home .content p{
+    font-size: 2.5rem;
+    color: #fff;
+    padding: .5rem 0;
+}
+
+.home .video-container video{
+    position: absolute;
+    top:0; left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.home .controls{
+    padding: 1rem;
+    border-radius: 5rem;
+    background: rgba(0,0,0, .7);
+    position: relative;
+    top: 10rem;
+}
+
+.home .controls .vid-btn{
+    height: 2rem;
+    width: 2rem;
+    display: inline-block;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    margin:0 .5rem;
+}
+
+.home .controls .vid-btn.active{
+    background: var(--orange);
+}
+
+.book .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.book .row .image{
+    flex: 1 1 40rem;
+}
+
+.book .row .image img{
+    width: 100%;
+}
+
+.book .row form{
+    flex: 1 1 40rem;
+    padding: 2rem;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+    border-radius: .5rem;
+}
+
+.book .row form .inputBox{
+    padding: .5rem 0;
+}
+
+.book .row form .inputBox input{
+    width: 100%;
+    padding: 1rem;
+    border: .1rem solid rgba(0,0,0, .1);
+    font-size: 1.7rem;
+    color: #333;
+    text-transform: none;
+}
+
+.book .row form .inputBox h3{
+    font-size: 2rem;
+    padding: 1rem 0;
+    color:#666;
+} 
+
+.packages .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.packages .box-container .box{
+    flex:1 1 30rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(0,0,0, .1);
+}
+
+.packages .box-container .box img{
+    height: 25rem;
+    width:100%;
+    object-fit: cover;
+}
+
+.packages .box-container .box .content{
+    padding:2rem;
+}
+
+.packages .box-container .box .content h3{
+    font-size: 2rem;
+    color: #333;
+}
+
+.packages .box-container .box .content h3 i{
+    color:var(--orange);
+}
+
+.packages .box-container .box .content p{
+    font-size: 1.7rem;
+    color: #666;
+    padding: 1rem 0;
+}
+
+.packages .box-container .box .content .stars{
+    font-size: 1.7rem;
+    color: var(--orange);
+}
+
+.packages .box-container .box .content .price{
+    font-size: 2rem;
+    color: #333;
+    padding-top: 1rem;
+}
+
+.packages .box-container .box .content .price span{
+    color: #666;
+    font-size: 1.5rem;
+    text-decoration: line-through;
+}
+
+
+.services .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.services .box-container .box{
+    flex: 1 1 30rem;
+    border-radius: .5rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.services .box-container .box i{
+    padding: 1rem;
+    font-size: 5rem;
+    color:var(--orange);
+}
+
+.services .box-container .box h3{
+    font-size: 2.5rem;
+    color:#333;
+}
+
+.services .box-container .box p{
+    font-size: 1.5rem;
+    color:#666;
+    padding: 1rem 0;
+}
+
+.services .box-container .box:hover{
+    box-shadow: 0 1rem 2rem rgba(0,0,0,1);
+}
+
+
+.gallery .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.gallery .box-container .box{
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+    border: 1rem solid #fff;
+    border-radius: .5rem;
+    flex: 1 1 30rem;
+    height: 25rem;
+    position: relative;
+}
+
+.gallery .box-container .box img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.gallery .box-container .box .content{
+    position: absolute;
+    top: -100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background: rgba(0,0,0, .7);
+    padding: 2rem;
+    padding-top: 5rem;
+}
+
+.gallery .box-container .box:hover .content{
+    top: 0;
+
+}
+
+.gallery .box-container .box .content h3{
+    font-size: 2.5rem;
+    color: var(--orange);
+}
+
+.gallery .box-container .box .content p{
+    font-size: 1.5rem;
+    color: #eee;
+    padding: .5rem 0;
+}
+
+
+.footer{
+    background:#333;
+}
+
+.footer .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer .box-container .box{
+    padding: 1rem 0;
+    flex: 1 1 25rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.5rem;
+    padding:.7rem 0;
+    color: #fff;
+}
+
+.footer .box-container .box p{
+    font-size: 1.5rem;
+    padding:.7rem 0;
+    color: #eee;
+}
+
+.footer .box-container .box a{
+    display: block;
+    font-size: 1.5rem;
+    padding:.7rem 0;
+    color: #eee;
+}
+
+.footer .box-container .box a:hover{
+    color: var(--orange);
+    text-decoration: underline;
+}
+
+.footer .credit{
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+    <!-- <video id="background-video" autoplay loop muted>
+        <source src="pexels-shalender-kumar-6583706 (1080p) (1).mp4" type="video/mp4">
+      </video> -->
+      <header>
+        <!-- <div id="menu-bar" class="fas fa-bars"></div> -->
+        <a href="#" class="logo"><span>I</span>ncredible <span>I</span>ndia</a>
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#book">book</a>
+            <a href="#packages">packages</a>
+            <a href="#services">services</a>
+            <a href="#gallery">gallery</a>
+            <a href="#queries">queries</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            <i class="fas fa-user" id="login-btn"></i>
+        </div>
+
+        <form actions="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="search here...">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+      </header>
+
+      <div class="login-form-container">
+        <i class="fas fa-times form-close" onclick="closeLoginForm()"></i> <!-- Close button -->
+        <form action="/storelogin" method="post">
+            <h3>login</h3>
+            <input type="email" class="box" name="email" placeholder="enter your email">
+            <input type="password" class="box" name="password" placeholder="enter your password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">remember me</label>
+            <p>forget password?  <a href="#">click here</a></p>
+            <p>don't have an account?  <a href="#">register now</a></p>
+        </form>
+    </div>
+    
+
+
+      <section class="home" id="home">
+
+        <div class="content">
+            <h3>dive into the divinity of bharat</h3>
+            <p>discover and experience the sacred land and its cultures.</p>
+            <a href="#" class="btn">discover more</a>
+        </div>
+
+        <div class="controls">
+          <span class="vid-btn active" data-src="v6.mp4"></span>
+          <span class="vid-btn" data-src="v2.mp4"></span>
+          <span class="vid-btn" data-src="v3.mp4"></span>
+          <span class="vid-btn" data-src="v4.mp4"></span>
+          <span class="vid-btn" data-src="v5.mp4"></span>
+
+        </div>
+
+        <div class="video-container">
+          <video src="v6.mp4" id="video-slider" loop autoplay muted></video>
+        </div>
+      </section>
+
+      <section class="book" id="book">
+        <h1 class="heading">
+          <span>v</span>
+          <span>i</span>
+          <span>s</span>
+          <span>i</span>
+          <span>t</span>
+          <span class="space"></span>
+          <span>o</span>
+          <span>u</span>
+          <span>r</span>
+          <span class="space"></span>
+          <span>h</span>
+          <span>e</span>
+          <span>r</span>
+          <span>i</span>
+          <span>t</span>
+          <span>a</span>
+          <span>g</span>
+          <span>e</span>
+        </h1>
+
+        <div class="row">
+          <div class="image">
+            <img src="img1.png" alt="">
+          </div>
+
+          <form action="/storedata" method="post">
+            <div class="inputBox">
+              <h3>Monument</h3>
+              <input type="text" name="monument" placeholder="enter the monument you want to visit">
+            </div>
+            <div class="inputBox">
+              <h3>how many</h3>
+              <input type="number" name="how_many" placeholder="number of guests">
+            </div>
+            <div class="inputBox">
+              <h3>arrivals</h3>
+              <input type="date" name="arrivals">
+            </div>
+            <!-- <div class="inputBox">
+              <h3>leaving</h3>
+              <input type="date">
+            </div> -->
+            <input type="submit" class="btn" value="book now">
+          </form>
+        </div>
+      </section>
+
+      <section class="packages" id="packages">
+        <h1 class="heading">
+          <span>e</span>
+          <span>x</span>
+          <span>p</span>
+          <span>e</span>
+          <span>r</span>
+          <span>i</span>
+          <span>e</span>
+          <span>n</span>
+          <span>c</span>
+          <span>e</span>
+          <span class="space"></span>
+          <span>c</span>
+          <span>u</span>
+          <span>l</span>
+          <span>t</span>
+          <span>u</span>
+          <span>r</span>
+          <span>e</span>
+        </h1>
+
+        <div class="box-container">
+
+          <div class="box">
+            <img src="i22.jpg" alt="">
+            <div class="content">
+              <h3><i class="fas fa-map-marker-alt"></i>tamil nadu</h3>
+              <p>Bharatanatyam is a dance of Tamil Nadu in southern India. It traces its origins back to the Natyashastra, an ancient treatise on theatre written by the mythic priest Bharata.</p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price"> INR 100.00 <span>200.00</span></div>
+              <a href="#" class="btn">book now</a>
+            </div>
+          </div>
+
+          <div class="box">
+            <img src="i25.avif" alt="">
+            <div class="content">
+              <h3><i class="fas fa-map-marker-alt"></i>madhya pradesh</h3>
+              <p>Kathak is characterized by intricate footwork and precise rhythmic patterns that the dancer articulates by controlling about 100 ankle bells.</p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price"> INR 100.00 <span>200.00</span></div>
+              <a href="#" class="btn">book now</a>
+            </div>
+          </div>
+
+
+          <div class="box">
+            <img src="i21.jpg" alt="">
+            <div class="content">
+              <h3><i class="fas fa-map-marker-alt"></i>Odissa</h3>
+              <p>Odissi drama-dance involved women (Maharis) enacting a spiritual poem or a religious story either in the inner sanctum of a Hindu temple, or in the Natamandira attached to the temple.</p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price"> INR 100.00 <span>200.00</span></div>
+              <a href="#" class="btn">book now</a>
+            </div>
+          </div>
+
+
+          <div class="box">
+            <img src="i18.jpg" alt="">
+            <div class="content">
+              <h3><i class="fas fa-map-marker-alt"></i>Rajasthan</h3>
+              <p>Ghoomar is a traditional as well as an enthusiastic folk dance of Rajasthan.The Ghoomar dance is a particularly a women's dance and performed by the women for exclusively ladies gatherings.</p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price">INR 100.00 <span>200.00</span></div>
+              <a href="#" class="btn">book now</a>
+            </div>
+          </div>
+
+
+          <div class="box">
+            <img src="i16.jpg" alt="">
+            <div class="content">
+              <h3><i class="fas fa-map-marker-alt"></i>Punjab</h3>
+              <p>giddha, traditional pastoral dance performed by women of the Punjab, India, and Pakistan at festival times and at the sowing and reaping of the harvest. </p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price"> INR 100.00 <span>200.00</span></div>
+              <a href="#" class="btn">book now</a>
+            </div>
+          </div>
+
+
+          <div class="box">
+            <img src="i20.jpg" alt="">
+            <div class="content">
+              <h3><i class="fas fa-map-marker-alt"></i>Kerala</h3>
+              <p>Kathakali is an evolved dance form popular in the South Indian state of Kerala. This Indian classical dance involves storytelling activities through fascinating footwork and expressive gestures of face and hands accompanied by music and vocal performance.</p>
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="price"> INR 100.00 <span>200.00</span></div>
+              <a href="#" class="btn">book now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+<section class="services" id="services">
+  <h1 class="heading">
+    <span>s</span>
+    <span>e</span>
+    <span>r</span>
+    <span>v</span>
+    <span>i</span>
+    <span>c</span>
+    <span>e</span>
+    <span>s</span>
+  </h1>
+<div class="box-container">
+  <div class="box">
+    <i class="fas fa-hotel"></i>
+    <h3>affordable hotels</h3>
+    <p>jxnj jnjcu jcjudnsucnsduc jcudsnchsbchsbhs ncusdnjsn  ncsncsjsndscs
+      dsbb cshb s nj nj   d ddcdscsdcds</p>
+  </div>
+
+  <div class="box">
+    <i class="fas fa-utensils"></i>
+    <h3>food and drinks</h3>
+    <p>jxnj jnjcu jcjudnsucnsduc jcudsnchsbchsbhs ncusdnjsn  ncsncsjsndscs
+      dsbb cshb s nj nj   d ddcdscsdcds</p>
+  </div>
+
+  <div class="box">
+    <i class="fas fa-bullhorn"></i>
+    <h3>safety</h3>
+    <p>jxnj jnjcu jcjudnsucnsduc jcudsnchsbchsbhs ncusdnjsn  ncsncsjsndscs
+      dsbb cshb s nj nj   d ddcdscsdcds</p>
+  </div>
+
+  <div class="box">
+    <i class="fas fa-globe-asia"></i>
+    <h3>around the world</h3>
+    <p>jxnj jnjcu jcjudnsucnsduc jcudsnchsbchsbhs ncusdnjsn  ncsncsjsndscs
+      dsbb cshb s nj nj   d ddcdscsdcds</p>
+  </div>
+
+  <div class="box">
+    <i class="fas fa-plane"></i>
+    <h3>affordable hotels</h3>
+    <p>jxnj jnjcu jcjudnsucnsduc jcudsnchsbchsbhs ncusdnjsn  ncsncsjsndscs
+      dsbb cshb s nj nj   d ddcdscsdcds</p>
+  </div>
+
+  <div class="box">
+    <i class="fas fa-hiking"></i>
+    <h3>adventures</h3>
+    <p>jxnj jnjcu jcjudnsucnsduc jcudsnchsbchsbhs ncusdnjsn  ncsncsjsndscs
+      dsbb cshb s nj nj   d ddcdscsdcds</p>
+  </div>
+
+</div>
+</section>
+
+<section class="gallery" id="gallery">
+  <h1 class="heading">
+    <span>g</span>
+    <span>a</span>
+    <span>l</span>
+    <span>l</span>
+    <span>e</span>
+    <span>r</span>
+    <span>y</span>
+  </h1>
+
+  <div class="box-container">
+    <div class="box">
+      <img src="i1.jpg" alt="">
+      <div class="content">
+        <h3>gateway of india</h3>
+        <p>This imposing triumphal arch was built to commemorate the visit of King George V when India was still part of the British Empire</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="i2.jpg" alt="">
+      <div class="content">
+        <h3>Meenakshi temple</h3>
+        <p>Meenakshi temple with 1000 pillars is simply breathtaking, colourful with the painted carvings on the outside.</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="i3.jpg" alt="">
+      <div class="content">
+        <h3>gandikota canyon</h3>
+        <p>The beauty of Gandikota canyon is compared with that of Grand Canyon and hence, they call it the grand canyon of India.</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="i4.jpg" alt="">
+      <div class="content">
+        <h3>sun konark temple</h3>
+        <p>A masterpiece of creative genius in conception, the temple represents a chariot of the Sun God.</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="i5.jpg" alt="">
+      <div class="content">
+        <h3>hawa mahal</h3>
+        <p>Also known as the “Palace of the Winds”, this stunning structure has captured the imagination of travelers for centuries.</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="i6.jpg" alt="">
+      <div class="content">
+        <h3>taj mahal</h3>
+        <p>The exquisite marble structure in Agra, an enduring monument to the love of a husband for his favorite wife.</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="i7.jpg" alt="">
+      <div class="content">
+        <h3>charminar</h3>
+        <p>The Charminar, a grand architectural composition in Indo-Saracenic style with open arches and four minarets.</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="i8.jpg" alt="">
+      <div class="content">
+        <h3> ellora cave temple</h3>
+        <p>Ellora Caves are a multi-religious rock-cut cave complex with inscriptions dating from the period 6th century CE onwards.</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <img src="i10.jpg" alt="">
+      <div class="content">
+        <h3>rich heritage</h3>
+        <p>India is a country having a rich dynasty and cultural heritage. Know more about the rich cultural heritage of India.</p>
+        <a href="#" class="btn">see more</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="queries" id="queries">
+    <h1 class="heading">
+      <span>q</span>
+      <span>u</span>
+      <span>e</span>
+      <span>r</span>
+      <span>i</span>
+      <span>e</span>
+      <span>s</span>
+    </h1>
+  
+  
+    <pre>                           For any queries regarding tourism in india click on the below button inorder to get assistance from our tourist support team.
+                                                                                                                              <a href="queries.html" class="btn">tourist support</a></pre>
+  </section>
+
+<section class="footer">
+<div class="box-container">
+  <div class="box">
+    <h3>about us</h3>
+    <p>India has a myriad of landscapes, great heritage and culture, varied flora and fauna. The country is the most preferred tourist destinations for tourists from all across the world for its picturesque landscapes, spectacular waterfalls, 
+      habitat of the country's largest tiger reserve and home to the warmest people on earth.</p>
+  </div>
+
+    <div class="box">
+      <h3>locations</h3>
+      <a href="#">Delhi tourism</a>
+      <a href="#">andhra pradesh</a>
+      <a href="#">himachal pradesh</a>
+      <a href="#">uttar pradesh</a>
+      <a href="#">bihar</a>
+    </div>
+
+    <div class="box">
+      <h3>quick links</h3>
+      <a href="#">home</a>
+      <a href="#">book</a>
+      <a href="#">packages</a>
+      <a href="#">services</a>
+      <a href="#">MOT(india)</a>
+    </div>
+
+    <div class="box">
+      <h3>follow us on</h3>
+      <a href="#">facebook</a>
+      <a href="#">instagram</a>
+      <a href="#">twitter</a>
+      <a href="#">youtube</a>
+      <a href="#">whatsapp</a>
+    </div>
+  </div>
+  <h1 class="credit">Ministry of indian tourism | all rights reserved |</h1>
+</section>
+
+
+      <script src="scripting.js"></script>
+      <script>
+        let searchBtn= document.querySelector('#search-btn');
+let searchBar= document.querySelector('.search-bar-container');
+let formBtn= document.querySelector('#login-btn');
+let loginForm= document.querySelector('.login-form-container');
+let formClose= document.querySelector('#form-close');
+let videoBtn=document.querySelectorAll('.vid-btn');
+
+window.onscroll=()=>{
+    searchBtn.classList.remove('fa-times');
+    searchBar.classList.remove('active');
+}
+
+
+searchBtn.addEventListener('click', () =>{
+    searchBtn.classList.toggle('fa-times');
+    searchBar.classList.toggle('active');
+});
+
+formBtn.addEventListener('click', () =>{
+    loginForm.classList.add('active');
+});
+
+formClose.addEventListener('click', () =>{
+    loginForm.classList.remove('active');
+});
+
+videoBtn.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+        document.querySelector('.controls .active').classList.remove('active');
+        btn.classList.add('active');
+        let src=btn.getAttribute('data-src');
+        document.querySelector('#video-slider').src=src;
+    });
+});
+$(document).ready(function() {
+    $('.form-close').click(function() {
+        $('.login-form-container').hide();
+    });
+});
+function closeLoginForm() {
+    var loginForm = document.querySelector('.login-form-container');
+    loginForm.style.display = 'none';
+}
+function showLoginForm() {
+    var loginForm = document.querySelector('.login-form-container');
+    loginForm.style.display = 'block';
+}
+      </script>
+</body>
+</html>
